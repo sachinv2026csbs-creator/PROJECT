@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DESKY – Quick Study & Test Prep</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="logo">D</span><h1>DESKY</h1></div>
+    <div class="exam">
+      <label>Exam date <input type="date" id="examDate"></label>
+      <div id="countdown" class="countdown">Set your exam date</div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="focus">Focus</button>
+    <button class="tab" data-tab="cards">Cards</button>
+    <button class="tab" data-tab="quiz">Quiz</button>
+    <button class="tab" data-tab="progress">Progress</button>
+  </nav>
+
+  <main>
+    <!-- FOCUS -->
+    <section id="focus" class="panel active">
+      <input id="goal" class="input" type="text" placeholder="One goal for this session (e.g. Thermodynamics ch. 3)">
+      <div class="chips" id="chips">
+        <button class="chip" data-min="10">10 min</button>
+        <button class="chip" data-min="15">15 min</button>
+        <button class="chip" data-min="20">20 min</button>
+        <button class="chip active" data-min="25">25 min</button>
+      </div>
+      <div class="ring" id="ring"><div class="ring-inner"><span id="time">25:00</span><small id="timerMsg">Ready</small></div></div>
+      <div class="row center">
+        <button id="startBtn" class="btn primary">Start</button>
+        <button id="pauseBtn" class="btn">Pause</button>
+        <button id="resetBtn" class="btn">Reset</button>
+      </div>
+      <p class="muted center" id="todayMinutes"></p>
+    </section>
+
+    <!-- CARDS -->
+    <section id="cards" class="panel">
+      <h2>Make cards from your notes</h2>
+      <input id="topic" class="input" type="text" placeholder="Topic (e.g. Physics)">
+      <textarea id="notes" class="input" rows="5" placeholder="One card per line:&#10;Question | Answer&#10;What is Newton's 2nd law? | F = ma"></textarea>
+      <div class="row">
+        <button id="addCards" class="btn primary">Add cards</button>
+        <button id="sampleBtn" class="btn">Load sample</button>
+      </div>
+      <p id="cardMsg" class="muted"></p>
+
+      <div id="viewer" class="viewer hidden">
+        <div id="flash" class="flash" tabindex="0"><span id="flashText"></span></div>
+        <div class="row center">
+          <button id="prevCard" class="btn">Prev</button>
+          <span id="cardPos" class="muted"></span>
+          <button id="nextCard" class="btn">Next</button>
+        </div>
+        <p class="muted center">Tap the card to flip</p>
+      </div>
+
+      <ul id="cardList" class="list"></ul>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="panel">
+      <h2>Quick quiz</h2>
+      <div class="row">
+        <select id="quizTopic" class="input"></select>
+        <button id="startQuiz" class="btn primary">Start</button>
+      </div>
+      <div id="quizBox" class="quiz hidden">
+        <div class="muted" id="quizProgress"></div>
+        <div class="flash" id="quizQ"></div>
+        <div id="quizA" class="answer hidden"></div>
+        <div class="row center">
+          <button id="showBtn" class="btn primary">Show answer</button>
+          <button id="gotBtn" class="btn good hidden">Got it</button>
+          <button id="missBtn" class="btn bad hidden">Missed</button>
+        </div>
+      </div>
+      <p id="quizResult" class="muted center"></p>
+    </section>
+
+    <!-- PROGRESS -->
+    <section id="progress" class="panel">
+      <h2>Your progress</h2>
+      <div class="stats">
+        <div class="stat"><b id="sMinutes">0</b><span>min today</span></div>
+        <div class="stat"><b id="sStreak">0</b><span>day streak</span></div>
+        <div class="stat"><b id="sCards">0</b><span>cards</span></div>
+        <div class="stat"><b id="sAcc">–</b><span>accuracy</span></div>
+      </div>
+      <h3>Today's plan</h3>
+      <p id="plan" class="plan"></p>
+      <h3>Weak topics</h3>
+      <div id="weak"></div>
+      <button id="resetAll" class="btn bad small">Reset all data</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
